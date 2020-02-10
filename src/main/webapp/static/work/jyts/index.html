@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../lib/layui/css/layui.css" />
+        <link rel="stylesheet" href="../lib/fontawesome/css/all.css" />
+        <link rel="stylesheet" href="../css/common.css" />
+        <link rel="stylesheet" href="../css/channel.css" />
+    </head>
+    <body>
+        <!-- 圣杯布局, 主内容放前面渲染 -->
+        <div class="content">
+            <div class="frame">
+                <iframe
+                    src="./cs/xly.html"
+                    frameborder="0"
+                    id="contentFrame"
+                    name="contentFrame"
+                ></iframe>
+            </div>
+        </div>
+        <div class="side">
+            <div class="channel">
+                建议投诉
+            </div>
+            <ul id="left-nav" class="layui-nav layui-nav-tree">
+                <div class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">
+                        <i class="fas fa-hotel"></i>初审
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd class="layui-this">
+                            <a
+                                href="./cs/xly.html"
+                                target="contentFrame"
+                                title="新留言"
+                            >
+                                <i class="fas fa-dna"></i>新留言
+                            </a>
+                        </dd>
+                        <dd>
+                            <a
+                                href="./gdjbywswsyszhyw.html"
+                                target="contentFrame"
+                                title="通过审核留言"
+                            >
+                                <i class="fas fa-dice-d20"></i>
+                                通过审核留言
+                            </a>
+                        </dd>
+                        <dd>
+                            <a
+                                href="./gdjbywswsyszhyw.html"
+                                target="contentFrame"
+                                title="未通过审核留言"
+                            >
+                                <i class="fas fa-dice-d20"></i>
+                                未通过审核留言
+                            </a>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="layui-nav-item">
+                    <a href="javascript:;" title="建议管理">
+                        <i class="fas fa-rocket"></i>建议管理
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a
+                                href="./rlyczyzhyw.html"
+                                target="contentFrame"
+                                title="待转办"
+                            >
+                                <i class="fas fa-dna"></i>待转办
+                            </a>
+                        </dd>
+                        <dd>
+                            <a
+                                href="./gdjbywswsyszhyw.html"
+                                target="contentFrame"
+                                title="已转办、待答复"
+                            >
+                                <i class="fas fa-dice-d20"></i>
+                                已转办、待答复
+                            </a>
+                        </dd>
+                        <dd>
+                            <a
+                                href="./gdjbywswsyszhyw.html"
+                                target="contentFrame"
+                                title="待审核办理"
+                            >
+                                <i class="fas fa-dice-d20"></i>
+                                待审核办理
+                            </a>
+                        </dd>
+                        <dd>
+                            <a
+                                href="./gdjbywswsyszhyw.html"
+                                target="contentFrame"
+                                title="已办结"
+                            >
+                                <i class="fas fa-dice-d20"></i>
+                                已办结
+                            </a>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="layui-nav-item">
+                    <a href="javascript:;" title="建议办理">
+                        <i class="fas fa-warehouse"></i>建议办理
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a
+                                href="./rlyczyzhyw.html"
+                                target="contentFrame"
+                                title="承办单位待办理"
+                            >
+                                <i class="fas fa-dna"></i>承办单位待办理
+                            </a>
+                        </dd>
+                        <dd>
+                            <a
+                                href="./gdjbywswsyszhyw.html"
+                                target="contentFrame"
+                                title="承办单位已办理"
+                            >
+                                <i class="fas fa-dice-d20"></i>
+                                承办单位已办理
+                            </a>
+                        </dd>
+                        <dd>
+                            <a
+                                href="./gdjbywswsyszhyw.html"
+                                target="contentFrame"
+                                title="承办单位已退回"
+                            >
+                                <i class="fas fa-dice-d20"></i>
+                                承办单位已退回
+                            </a>
+                        </dd>
+                        <dd>
+                            <a
+                                href="./gdjbywswsyszhyw.html"
+                                target="contentFrame"
+                                title="已办理"
+                            >
+                                <i class="fas fa-dice-d20"></i>
+                                已办理
+                            </a>
+                        </dd>
+                    </dl>
+                </div>
+            </ul>
+        </div>
+        <script src="../lib/layui/layui.all.js"></script>
+        <script src="../js/channel.js"></script>
+    </body>
+</html>

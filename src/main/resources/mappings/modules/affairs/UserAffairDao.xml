@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.sys.dao.UserAffairDao">
+
+	<sql id="userAffairColumns">
+		a.affairid AS "affairid",
+		a.userid AS "userid",
+		a.affairname
+		AS "affairname",
+		a.affairurl AS "affairurl",
+		a.create_time AS
+		"createTime",
+		a.att_order AS "attOrder"
+	</sql>
+
+	<sql id="userAffairJoins">
+	</sql>
+
+	<select id="get" resultType="UserAffair">
+		SELECT
+		<include refid="userAffairColumns" />,(case when a.userid is not null then '1' else '0' end ) as isgz
+		FROM sys_user_affair a
+		<include refid="userAffairJoins" />
+		WHERE affairid = #{affairid} and userid = #{userid}
+	</select>
+
+	<select id="findList" resultType="UserAffair">
+		SELECT
+		<include refid="userAffairColumns" />
+		FROM sys_user_affair a
+		<include refid="userAffairJoins" />
+		<where>
+
+			<if test="affairid != null and affairid != ''">
+				AND a.affairid = #{affairid}
+			</if>
+			<if test="userid != null and userid != ''">
+				AND a.userid = #{userid}
+			</if>
+			<if test="affairname != null and affairname != ''">
+				AND a.affairname = #{affairname}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="findAllList" resultType="UserAffair">
+		SELECT
+		<include refid="userAffairColumns" />,(case when a.userid is not null then '1' else '0' end ) as isgz
+		FROM sys_user_affair a
+		<include refid="userAffairJoins" />
+		<where>
+
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<insert id="addUserAffair">
+		INSERT INTO sys_user_affair(
+		affairid,
+		userid,
+		affairname,
+		affairurl,
+		create_time,
+		att_order
+		) VALUES (
+		#{affairid},
+		#{userid},
+		#{affairname},
+		#{affairurl},
+		#{createTime},
+		#{attOrder}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE sys_user_affair SET
+		affairid = #{affairid},
+		userid = #{userid},
+		affairname = #{affairname},
+		affairurl = #{affairurl},
+		create_time = #{createTime},
+		att_order = #{attOrder}
+		WHERE id = #{id}
+	</update>
+
+	<update id="cancleUserAffair">
+		DELETE FROM sys_user_affair
+		WHERE affairid = #{affairid}
+		and userid = #{userid}
+	</update>
+
+</mapper>

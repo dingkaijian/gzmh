@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.sys.dao.AffairsListDao">
+    <resultMap id="BaseResultMap" type="com.thinkgem.jeesite.modules.sys.entity.AffairsList">
+    <id column="AFFAIRID" jdbcType="VARCHAR" property="affairid" />
+    <result column="AFFAIRNAME" jdbcType="VARCHAR" property="affairname" />
+    <result column="AFFAIRSERIALNO" jdbcType="DECIMAL" property="affairserialno" />
+    <result column="AFFAIRNO" jdbcType="VARCHAR" property="affairno" />
+    <result column="AFFAIRICON" jdbcType="VARCHAR" property="affairicon" />
+    <result column="AFFAIRBUREAU" jdbcType="VARCHAR" property="affairbureau" />
+    <result column="AFFAIRBYUSER" jdbcType="VARCHAR" property="affairbyuser" />
+    <result column="AFFAIRBYCATEGORY" jdbcType="VARCHAR" property="affairbycategory" />
+    <result column="AFFAIRBYBUREAU" jdbcType="VARCHAR" property="affairbybureau" />
+    <result column="AFFAIRBYSYSTEM" jdbcType="VARCHAR" property="affairbysystem" />
+    <result column="AFFAIRICON1" jdbcType="VARCHAR" property="affairicon1" />
+    <result column="AFFAIRCONDITION" jdbcType="CLOB" property="affaircondition" />
+    <result column="AFFAIRPROCESS" jdbcType="CLOB" property="affairprocess" />
+    <result column="AFFAIREXPLAIN" jdbcType="CLOB" property="affairexplain" />
+    <result column="AFFAIRFILES" jdbcType="CLOB" property="affairfiles" />
+    <result column="AFFAIRURL" jdbcType="VARCHAR" property="affairUrl" />
+    <result column="EXTRAURLS" jdbcType="VARCHAR" property="extraUrls" />
+    <result column="EXTRAURLS2" jdbcType="VARCHAR" property="extraUrls2" />
+    <result column="SPARE" jdbcType="VARCHAR" property="spare" />
+    <result column="PERMISSION" jdbcType="VARCHAR" property="permission" />
+    
+    <result column="ITEM_TYPE" jdbcType="VARCHAR" property="itemType" />
+    <result column="SETTING_BASIS" jdbcType="VARCHAR" property="settingBasis" />
+    <result column="POWER" jdbcType="VARCHAR" property="power" />
+    <result column="EXERCISE_LEVEL" jdbcType="VARCHAR" property="exerciseLevel" />
+    <result column="IMPLEMENT_CODE" jdbcType="VARCHAR" property="implementCode" />
+    <result column="BUSINESS_PROCESS_CODE" jdbcType="VARCHAR" property="businessProcessCode" />
+    <result column="ITEM_STATUS" jdbcType="VARCHAR" property="itemStatus" />
+    <result column="ITEM_VERSION" jdbcType="VARCHAR" property="itemVersion" />
+    <result column="IMPLEMENT_ENTITY" jdbcType="VARCHAR" property="implementEntity" />
+    <result column="IMPLEMENT_NATURE" jdbcType="VARCHAR" property="implementNature" />
+    <result column="COLUMN_14" jdbcType="VARCHAR" property="column14" />
+    <result column="ENTRUSTE_DEPART" jdbcType="VARCHAR" property="entrusteDepart" />
+    <result column="STATUTORY_TIME_LIMIT" jdbcType="VARCHAR" property="statutoryTimeLimit" />
+    <result column="STATUTORY_TIME_LIMIT_UNIT" jdbcType="VARCHAR" property="statutoryTimeLimitUnit" />
+    <result column="COMMITMENT_TIME_LIMIT" jdbcType="VARCHAR" property="commitmentTimeLimit" />
+    <result column="COMMITMENT_TIME_LIMIT_UNIT" jdbcType="VARCHAR" property="commitmentTimeLimitUnit" />
+    <result column="IS_CHARGE" jdbcType="VARCHAR" property="isCharge" />
+    <result column="CHARGE_BASIS" jdbcType="VARCHAR" property="chargeBasis" />
+    <result column="SERVICE_OBJECT" jdbcType="VARCHAR" property="serviceObject" />
+    <result column="HANDBOOK_TYPE" jdbcType="VARCHAR" property="handbookType" />
+    <result column="HANDL_FORM" jdbcType="VARCHAR" property="handlForm" />
+    <result column="TRIPS_SCENE_NUM" jdbcType="VARCHAR" property="tripsSceneNum" />
+    <result column="SPECIAL_PROCEDURE" jdbcType="VARCHAR" property="specialProcedure" />
+    <result column="IS_MOBILE_SSO" jdbcType="VARCHAR" property="isMobileSso" />
+    <result column="MOBILE_ADDRESS" jdbcType="VARCHAR" property="mobileAddress" />
+    <result column="IS_COMPUTER_SSO" jdbcType="VARCHAR" property="isComputerSso" />
+    <result column="COMPUTER_ONLINE_URL" jdbcType="VARCHAR" property="computerOnlineUrl" />
+    <result column="PROCESS_ADDRESS" jdbcType="VARCHAR" property="processAddress" />
+    <result column="PROCESS_TIME" jdbcType="VARCHAR" property="processTime" />
+    <result column="CONSULT_METHOD" jdbcType="VARCHAR" property="consultMethod" />
+    <result column="SUPERVISE_COMPLAINT" jdbcType="VARCHAR" property="superviseComplaint" />
+    <result column="EFFECTIVE_DATE" jdbcType="VARCHAR" property="effectiveDate" />
+    <result column="CANCELLATION_DATE" jdbcType="VARCHAR" property="cancellationDate" />
+  </resultMap>
+  
+	<sql id="affairsListColumns">
+		a.affairid AS "affairid",
+		a.affairname AS "affairname",
+		a.affairserialno AS "affairserialno",
+		a.affairno AS "affairno",
+		a.affairicon AS "affairicon",
+		a.affairbureau AS "affairbureau",
+		a.affaircondition,
+		a.affairprocess,
+		a.affairexplain,
+		a.affairfiles,
+		a.affairbyuser AS "affairbyuser",
+		a.affairbycategory AS "affairbycategory",
+		a.affairbybureau AS "affairbybureau",
+		a.affairbysystem AS "affairbysystem",
+		a.affairicon1 AS "affairicon1",
+		a.affairurl AS "affairUrl",
+		a.extraurls AS "extraUrls",
+		a.extraurls2 AS "extraUrls2",
+		a.spare AS "spare",
+		a.permission AS "permission",
+		a.item_type AS "itemType",
+		a.setting_basis AS "settingBasis",
+		a.power AS "power",
+		a.exercise_level AS "exerciseLevel",
+		a.implement_code AS "implementCode",
+		a.business_process_code AS "businessProcessCode",
+		a.item_status AS "itemStatus",
+		a.item_version AS "itemVersion",
+		a.implement_entity AS "implementEntity",
+		a.implement_nature AS "implementNature",
+		a.column_14 AS "column14",
+		a.entruste_depart AS "entrusteDepart",
+		a.statutory_time_limit AS "statutoryTimeLimit",
+		a.statutory_time_limit_unit AS "statutoryTimeLimitUnit",
+		a.commitment_time_limit AS "commitmentTimeLimit",
+		a.commitment_time_limit_unit AS "commitmentTimeLimitUnit",
+		a.is_charge AS "isCharge",
+		a.charge_basis AS "chargeBasis",
+		a.service_object AS "serviceObject",
+		a.handbook_type AS "handbookType",
+		a.handl_form AS "handlForm",
+		a.trips_scene_num AS "tripsSceneNum",
+		a.special_procedure AS "specialProcedure",
+		a.is_mobile_sso AS "isMobileSso",
+		a.mobile_address AS "mobileAddress",
+		a.is_computer_sso AS "isComputerSso",
+		a.computer_online_url AS "computerOnlineUrl",
+		a.process_address AS "processAddress",
+		a.process_time AS "processTime",
+		a.consult_method AS "consultMethod",
+		a.supervise_complaint AS "superviseComplaint",
+		a.effective_date AS "effectiveDate",
+		a.cancellation_date AS "cancellationDate"
+	</sql>
+	
+	<sql id="affairsListJoins">
+	</sql>
+    
+	<!-- <select id="get" resultType="AffairsList">
+		SELECT 
+			<include refid="affairsListColumns"/>
+		FROM gov_affairs_list a
+		<include refid="affairsListJoins"/>
+		WHERE a.affairid = #{affairid}
+	</select> -->
+	
+
+	<resultMap id="selectAllWithOutGZResultMap" type="com.thinkgem.jeesite.modules.sys.entity.AffairsList">
+	    <id column="affairid" jdbcType="VARCHAR" property="affairid" />
+	    <result column="affairname" jdbcType="VARCHAR" property="affairname" />
+	    <result column="affairserialno" jdbcType="DECIMAL" property="affairserialno" />
+	    <result column="affairno" jdbcType="VARCHAR" property="affairno" />
+	    <result column="affairicon" jdbcType="VARCHAR" property="affairicon" />
+	    <result column="affairbureau" jdbcType="VARCHAR" property="affairbureau" />
+	    <result column="affairbyuser" jdbcType="VARCHAR" property="affairbyuser" />
+	    <result column="affairbycategory" jdbcType="VARCHAR" property="affairbycategory" />
+	    <result column="affairbybureau" jdbcType="VARCHAR" property="affairbybureau" />
+	    <result column="affairbysystem" jdbcType="VARCHAR" property="affairbysystem" />
+	    <result column="affairicon1" jdbcType="VARCHAR" property="affairicon1" />
+	    <result column="affaircondition" jdbcType="VARCHAR" property="affaircondition" />
+	    <result column="affairprocess" jdbcType="VARCHAR" property="affairprocess" />
+	    <result column="affairexplain" jdbcType="VARCHAR" property="affairexplain" />
+	    <result column="affairfiles" jdbcType="VARCHAR" property="affairfiles" />
+	    <result column="affairUrl" jdbcType="VARCHAR" property="affairUrl" />
+	    <result column="extraUrls" jdbcType="VARCHAR" property="extraUrls" />
+	    <result column="extraUrls2" jdbcType="VARCHAR" property="extraUrls2" />
+	    <result column="spare" jdbcType="VARCHAR" property="spare" />
+	    <result column="permission" jdbcType="VARCHAR" property="permission" />
+	    
+	    <result column="itemType" jdbcType="VARCHAR" property="itemType" />
+	    <result column="settingBasis" jdbcType="VARCHAR" property="settingBasis" />
+	    <result column="power" jdbcType="VARCHAR" property="power" />
+	    <result column="exerciseLevel" jdbcType="VARCHAR" property="exerciseLevel" />
+	    <result column="implementCode" jdbcType="VARCHAR" property="implementCode" />
+	    <result column="businessProcessCode" jdbcType="VARCHAR" property="businessProcessCode" />
+	    <result column="itemStatus" jdbcType="VARCHAR" property="itemStatus" />
+	    <result column="itemVersion" jdbcType="VARCHAR" property="itemVersion" />
+	    <result column="implementEntity" jdbcType="VARCHAR" property="implementEntity" />
+	    <result column="implementNature" jdbcType="VARCHAR" property="implementNature" />
+	    <result column="column14" jdbcType="VARCHAR" property="column14" />
+	    <result column="entrusteDepart" jdbcType="VARCHAR" property="entrusteDepart" />
+	    <result column="statutoryTimeLimit" jdbcType="VARCHAR" property="statutoryTimeLimit" />
+	    <result column="statutoryTimeLimitUnit" jdbcType="VARCHAR" property="statutoryTimeLimitUnit" />
+	    <result column="commitmentTimeLimit" jdbcType="VARCHAR" property="commitmentTimeLimit" />
+	    <result column="commitmentTimeLimitUnit" jdbcType="VARCHAR" property="commitmentTimeLimitUnit" />
+	    <result column="isCharge" jdbcType="VARCHAR" property="isCharge" />
+	    <result column="chargeBasis" jdbcType="VARCHAR" property="chargeBasis" />
+	    <result column="serviceObject" jdbcType="VARCHAR" property="serviceObject" />
+	    <result column="handbookType" jdbcType="VARCHAR" property="handbookType" />
+	    <result column="handlForm" jdbcType="VARCHAR" property="handlForm" />
+	    <result column="tripsSceneNum" jdbcType="VARCHAR" property="tripsSceneNum" />
+	    <result column="specialProcedure" jdbcType="VARCHAR" property="specialProcedure" />
+	    <result column="isMobileSso" jdbcType="VARCHAR" property="isMobileSso" />
+	    <result column="mobileAddress" jdbcType="VARCHAR" property="mobileAddress" />
+	    <result column="isComputerSso" jdbcType="VARCHAR" property="isComputerSso" />
+	    <result column="computerOnlineUrl" jdbcType="VARCHAR" property="computerOnlineUrl" />
+	    <result column="processAddress" jdbcType="VARCHAR" property="processAddress" />
+	    <result column="processTime" jdbcType="VARCHAR" property="processTime" />
+	    <result column="consultMethod" jdbcType="VARCHAR" property="consultMethod" />
+	    <result column="superviseComplaint" jdbcType="VARCHAR" property="superviseComplaint" />
+	    <result column="effectiveDate" jdbcType="VARCHAR" property="effectiveDate" />
+	    <result column="cancellationDate" jdbcType="VARCHAR" property="cancellationDate" />
+	   <result column="isgz" jdbcType="VARCHAR" property="isgz" />		
+ 	</resultMap>
+ 	<!-- 获取事项列表信息 -->
+ 	<select id="findList" resultMap="selectAllWithOutGZResultMap" >
+		SELECT 
+			<include refid="affairsListColumns"/>
+			<!-- (case when ocb.button_name is  null then b.client_name else ocb.button_name end ) as 
+
+client_name,
+    		(case when ocb.button_uri is  null then b.INCOME_URI else ocb.button_uri end ) as INCOME_URI,
+       		b.CLIENT_ID,b.SYSTEM_STATE,ocb.id -->
+   		 FROM sys_affair_list a
+   		 left join sys_user_affair u on u.affairid = a.affairid  
+         <!-- left join oauth2_client b on a.affairid = b.affairid
+         left join oauth2_client_button ocb on ocb.client_id=b.client_id  -->
+		<where>
+			<if test="affairname != null and affairname != ''">
+				AND a.affairname LIKE 
+					<if test="dbName == 'oracle'">'%'||#{affairname}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{affairname}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{affairname},'%')</if>
+			</if>
+			<if test="affairserialno != null and affairserialno != ''">
+				AND a.affairserialno = #{affairserialno}
+			</if>
+			<if test="affairno != null and affairno != ''">
+				AND a.affairno = #{affairno}
+			</if>
+			<if test="affairbyuser != null and affairbyuser != ''">
+				AND a.affairbyuser = #{affairbyuser}
+			</if>
+			<if test="affairbycategory != null and affairbycategory != ''">
+				AND a.affairbycategory = #{affairbycategory}
+			</if>
+			<if test="affairbybureau != null and affairbybureau != ''">
+				AND a.affairbybureau = #{affairbybureau}
+			</if>
+		</where>
+		order by a.affairserialno
+	</select>
+	<!-- 获取用户关注信息 -->
+ 	<select id="selectAllByUser" resultType="AffairsList">
+		select <include refid="affairsListColumns"/>,      		 
+       		a.isgz,(case when a.userid is not null then '1' else '0' end ) as issq 
+		from (
+			 select w.*,(case when u.userid is not null then '1' else '0' end ) as isgz,u.userid
+			  	from sys_affair_list w 
+			    left join sys_user_affair u on u.affairid = w.affairid  and u.userid= #{userId}) a
+      order by a.affairserialno
+		<!-- select t.*,(case when u.userid is not null then '1' else '0' end ) as isgz 
+		from sys_affair_list t 
+			left join sys_user_affair u on u.affairid = t.affairid 
+			left join sys_affair_button b on b.affairid = t.affairid
+				where  u.userid = #{userId}
+				order by create_time desc -->
+	</select>
+	<select id="selectAffairButton" resultType="cn.ac.ict.modules.client.entity.OAuthClient">
+	    select 	   		 
+		 a.button_name as "clientName",
+    	 a.button_uri  as "incomeUri",
+    	 a.affairid as "clientId"
+       	 from sys_affair_button a,sys_affair_list b
+       	 where a.affairid=b.affairid
+       	 order by a.id			    
+	</select>
+	
+</mapper>

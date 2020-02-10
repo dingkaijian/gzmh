@@ -1,0 +1,24 @@
+body {
+    background-image: url("../img/login.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-box {
+    height: 350px;
+    width: 500px;
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    padding: 20px 40px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -250px;
+    margin-top: -200px;
+}
+
+.login-title {
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    margin: 20px 0 60px;
+}

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ac.ict.modules.sys.dao.LoginLimitDao">
+
+	  <sql id="Columns">
+	    a.id AS "id",
+	    a.logintime AS "loginTime",
+	    a.locked AS "locked",
+	    a.logincount AS "loginCount"
+	  </sql>
+
+	<select id="get" resultType="LoginLimit">
+		select
+		 <include refid="Columns"/>
+			 from loginlimit a
+			 where a.id=#{id}	
+	</select>
+
+
+
+	<update id="updateLoginLimit">
+	    update loginlimit a
+	    <set> 
+	    	<if test="loginTime != null and loginTime != ''">
+				a.logintime= #{loginTime},
+			</if>	
+			<if test="locked != null">
+				a.locked= #{locked},
+			</if>
+			<if test="loginCount != null">
+				a.logincount= #{loginCount},
+			</if>	
+		</set>
+		WHERE a.id = #{id}
+	</update>
+	
+	<insert id="insert">
+	    insert into loginlimit
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="loginTime != null and loginTime != ''">
+				logintime,
+			</if>	
+			<if test="locked != null ">
+				locked,
+			</if>		
+			<if test="loginCount != null " >
+				logincount,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="loginTime != null and loginTime != ''">
+				#{loginTime},
+			</if>
+			<if test="locked != null ">
+				#{locked},
+			</if>
+			<if test="loginCount != null ">
+				#{loginCount},
+			</if>
+		</trim>
+	</insert>
+</mapper>

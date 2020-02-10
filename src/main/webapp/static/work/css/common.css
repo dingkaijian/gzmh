@@ -1,0 +1,15 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* 默认蓝色按钮 */
+.layui-btn {
+    background-color: #4091cc;
+}
+
+/* 取消tab的上下边距 */
+.layui-tab {
+    margin: 0;
+}

@@ -1,0 +1,75 @@
+/* 板块间距 */
+.layui-row:not(:last-of-type) {
+    margin-bottom: 20px;
+}
+
+.layui-card {
+    border: solid 1px #d2d2d2;
+}
+
+.layui-card-header {
+    background: linear-gradient(#ddeaf5, #ffffff);
+    border-bottom: solid 1px #d2d2d2;
+}
+
+.layui-card-body {
+    padding: 20px;
+}
+
+/* 卡片标题 */
+.title {
+    font-weight: bold;
+    float: left;
+}
+
+/* 卡片更多 */
+.more {
+    float: right;
+    color: #4091cc;
+}
+
+/* 卡片列表 */
+ul.list {
+    padding-left: 20px;
+}
+
+ul.list li {
+    list-style: disc;
+}
+
+ul.list li a {
+    display: block;
+    overflow: hidden;
+    line-height: 24px;
+}
+
+/* 卡片列表标题 */
+.li-title {
+    float: left;
+}
+
+/* 卡片列表日期 */
+.li-date {
+    float: right;
+}
+
+.username {
+    font-size: 24px;
+}
+
+#calendar .layui-laydate-main {
+    width: 100%;
+}
+
+#calendar .layui-laydate-content th {
+    width: 100px;
+}
+
+#calendar .layui-laydate .layui-this {
+    background-color: #3c91d4 !important;
+}
+
+#calendar .layui-laydate-header i:hover,
+.layui-laydate-header span:hover {
+    color: #3c91d4;
+}

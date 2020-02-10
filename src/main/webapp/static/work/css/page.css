@@ -1,0 +1,28 @@
+/* 右下角单页 */
+
+body {
+    overflow: hidden;
+}
+
+.bread {
+    position: fixed;
+    z-index: 1000;
+    height: 34px;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    line-height: 34px;
+    padding-left: 20px;
+    background-color: #f3f3f2;
+}
+
+#main-content {
+    padding: 50px 20px 10px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+/* 搜索区域下方的操作按钮，靠右 */
+.tools {
+    text-align: right;
+}

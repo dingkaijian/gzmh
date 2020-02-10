@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.xtjh.dao.XtjhInfoDao">
+
+	<sql id="xtjhInfoColumns">
+		a.id AS "id",
+		a.type AS "type",
+		a.title AS "title",
+		a.content
+		AS "content",
+		a.files AS "files",
+		a.create_by as"createBy.id",
+		u.name AS
+		"createBy.name",
+		a.create_date AS "createDate",
+		a.by_sms AS "bySms",
+		a.by_email AS "byEmail",
+		a.del_flag AS "delFlag"
+	</sql>
+
+	<!-- 通知-转换创建人姓名 -->
+	<sql id="xtjhInfoJoins">
+		LEFT JOIN sys_user u on a.create_by = u.id
+	</sql>
+
+	<select id="get" resultType="XtjhInfo">
+		SELECT
+		<include refid="xtjhInfoColumns" />
+		FROM xtjh_info a
+		<include refid="xtjhInfoJoins" />
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 通知 -->
+	<select id="findList" resultType="XtjhInfo">
+		SELECT
+		<include refid="xtjhInfoColumns" />
+		FROM xtjh_info a
+		<include refid="xtjhInfoJoins" />
+		<!-- 我的通知 -->
+		<if test="isSelf">
+			JOIN xtjh_info_record r ON r.xtjh_info_id = a.id AND
+			r.user_id = #{currentUser.id}
+		</if>
+		<where>
+			AND a.del_flag = #{DEL_FLAG_NORMAL}
+			AND a.type = #{type}
+		</where>
+		ORDER BY a.create_date DESC
+	</select>
+
+	<!-- 消息 -->
+	<select id="findGroup" resultType="XtjhInfo">
+		SELECT
+		a.id AS "id",
+		a.content AS "content",
+		a.files AS "files",
+		IF
+		(a.create_by=#{currentUser.id}, a.create_by, r.user_id) AS
+		"createBy.id",
+		u1.name AS 'createBy.name',
+		IF
+		(r.user_id=#{currentUser.id}, a.create_by, r.user_id) AS "to.id",
+		IF
+		(r.user_id=#{currentUser.id}, a.create_by, r.user_id) AS "toid",
+		u2.name AS 'to.name',
+		a.create_date AS "createDate",
+		a.by_sms AS
+		"bySms",
+		a.by_email AS "byEmail"
+
+		FROM xtjh_info a
+
+		JOIN xtjh_info_record r
+		ON r.xtjh_info_id = a.id
+		LEFT JOIN sys_user u1 ON u1.id = if
+		(a.create_by=#{currentUser.id}, a.create_by,
+		r.user_id)
+		LEFT JOIN
+		sys_user u2 ON u2.id = if (r.user_id=#{currentUser.id}, a.create_by,
+		r.user_id)
+
+		<where>
+			AND a.del_flag = #{DEL_FLAG_NORMAL}
+			AND a.type = #{type}
+			AND
+			(a.create_by = #{currentUser.id} OR r.user_id = #{currentUser.id})
+		</where>
+		GROUP BY toid
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY a.create_date DESC
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<!-- 消息 -->
+	<select id="findMessageList" resultType="XtjhInfo">
+		SELECT
+		a.id AS "id",
+		a.content AS "content",
+		a.files AS "files",
+		a.create_by AS "createBy.id",
+		u1.name AS 'createBy.name',
+		r.user_id AS
+		"to.id",
+		r.user_id AS "toid",
+		u2.name AS 'to.name',
+		a.create_date AS
+		"createDate",
+		a.by_sms AS "bySms",
+		a.by_email AS "byEmail"
+
+		FROM xtjh_info
+		a
+
+		JOIN xtjh_info_record r ON r.xtjh_info_id = a.id
+		LEFT JOIN sys_user u1
+		ON u1.id = a.create_by
+		LEFT JOIN sys_user u2 ON u2.id = r.user_id
+
+		<where>
+			AND a.del_flag = #{DEL_FLAG_NORMAL}
+			AND a.type = #{type}
+			AND
+			(a.create_by = #{currentUser.id}
+			AND r.user_id = #{to.id})
+			OR
+			(a.create_by = #{currentUser.id}
+			AND r.user_id = #{to.id})
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY a.create_date DESC
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="findAllList" resultType="XtjhInfo">
+		SELECT
+		<include refid="xtjhInfoColumns" />
+		FROM xtjh_info a
+		<include refid="xtjhInfoJoins" />
+		<where>
+
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<insert id="insert">
+		INSERT INTO xtjh_info(
+		ID,
+		TYPE,
+		TITLE,
+		CONTENT,
+		FILES,
+		CREATE_BY,
+		CREATE_DATE,
+		by_sms,
+		by_email,
+		DEL_FLAG
+		) VALUES (
+		#{id},
+		#{type},
+		#{title},
+		#{content},
+		#{files},
+		#{createBy.id},
+		SYSDATE(),
+		#{bySms},
+		#{byEmail},
+		#{delFlag}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE xtjh_info SET
+		TYPE = #{type},
+		TITLE = #{title},
+		CONTENT = #{content},
+		FILES = #{files},
+		by_sms = #{bySms},
+		by_email =
+		#{byEmail}
+		WHERE id = #{id}
+	</update>
+
+	<update id="delete">
+		UPDATE xtjh_info SET
+		del_flag = '1'
+		WHERE id = #{id}
+	</update>
+
+</mapper>

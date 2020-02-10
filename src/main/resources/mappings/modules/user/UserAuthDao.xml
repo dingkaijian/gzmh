@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ac.ict.modules.user.dao.UserAuthDao">
+
+	<sql id="columns">
+		a.id,
+		a.name,
+		a.login,
+		a.pw,
+		a.email,
+		a.mobile,
+		a.certificate_no,
+		a.certificate_key,
+		a.type,
+		a.enc_mode,
+		a.salt,
+		a.lastLoginErrorTime,
+		a.islocked,
+		a.loginErrorCount,
+		a.loginTime,
+		a.activity
+	</sql>
+
+	
+	<select id="get" resultType="UserAuth">
+		SELECT
+		<include refid="columns" />
+		FROM user_auth a
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="getByLoginName" resultType="UserAuth">
+		SELECT
+		<include refid="columns" />
+		FROM user_auth a
+		WHERE a.login = #{login}
+	</select>
+	
+	<!--手机号登录，获取用户信息  -->
+    <select id="getByMobile" resultType="UserAuth">        
+    	SELECT
+		<include refid="columns" />
+		FROM user_auth a
+		WHERE a.mobile = #{mobile} 
+    </select>
+    
+    <!-- 为了避免集成过程出现账号重复问题，使用该SQL并进行前台提示 -->
+    <select id="findList" resultType="UserAuth">
+		SELECT
+		<include refid="columns" />
+		FROM user_auth a
+		<where> 
+			<if test="login != null and login != ''">
+				AND a.login = #{login}
+			</if>
+			<if test="mobile != null and mobile != ''">
+				AND a.mobile = #{mobile}
+			</if>
+		</where>
+	</select>
+    
+	<!-- 查询org_info表中，用户单位的审核状态 -->
+	<select id="getUserOrgStatus" resultType="java.lang.String">
+		SELECT
+			a.orgstatus
+		FROM 
+			org_info a inner join user_org b on a.orgid = b.orgid inner join user_auth c on b.userid = c.id
+		WHERE c.id = #{id}
+	</select>
+	
+	<!-- 查询org_info_temp表中，用户注册步骤 -->
+	<!-- <select id="getUserRegistStep" resultType="map">
+		SELECT
+			a.regstep as step,a.orgid as orgid ,c.userid as userid,c.login as login
+		FROM 
+			org_info_temp a inner join user_org b on a.orgid = b.orgid inner join user_auth c on b.userid = c.userid
+		WHERE c.userid = #{userid}
+	</select> -->
+	<select id="getUserType" resultType="java.lang.String">
+	    select type from user_auth where id = #{id}
+	</select>
+	
+	<select id="getByCertNoOrLogin" resultType="UserAuth">
+	    select id,login,email,mobile,certificate_no,name,type from user_auth 
+	    <where> 
+			<if test="certNo != null and certNo != ''">
+				AND (certificate_no = #{certNo} or certificate_no = #{certNo_sm4})
+			</if>
+			<if test="login != null and login != ''">
+				AND login = #{login}
+			</if>
+			<if test="type != null and type != ''">
+				AND type = #{type}
+			</if>
+		</where>
+	</select>
+	
+	<update id="updateAuthHash">
+	    update user_auth set certificate_key = #{certKey} where certificate_no = #{certNo}
+	</update>
+	<update id="updateUserAuth">
+	    update user_auth a
+	    <set> 
+	    	<if test="lastLoginErrorTime != null and lastLoginErrorTime != ''">
+				a.lastLoginErrorTime= #{lastLoginErrorTime},
+			</if>	
+			<if test="loginTime != null and loginTime != ''">
+				a.loginTime= #{loginTime},
+			</if>
+			<if test="islocked != null">
+				a.islocked= #{islocked},
+			</if>	
+			<if test="loginErrorCount != null">
+				a.loginErrorCount= #{loginErrorCount},
+			</if>	
+			<if test="activity != null">
+				a.activity= #{activity},
+			</if>	
+		</set>
+		WHERE a.id = #{id}
+	</update>
+	<insert id="insert">
+	    insert into user_auth
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="login != null and login != ''">
+				login,
+			</if>	
+			<if test="mobile != null and mobile != ''">
+				mobile,
+			</if>		
+			<if test="name != null and name != ''" >
+				name,
+			</if>
+			<if test="certificateNo != null and certificateNo != ''">
+				certificate_no,
+			</if>
+			<if test="certificateKey != null and certificateKey != ''">
+				certificate_key,
+			</if>
+			<if test="type != null and type != ''">
+				type,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="login != null and login!= ''">
+				#{login,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null and mobile!= ''">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null and name != ''">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="certificateNo != null and certificateNo != ''">
+				#{certificateNo,jdbcType=VARCHAR},
+			</if>
+			<if test="certificateKey != null and certificateKey != ''">
+				#{certificateKey,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null and type != ''">
+				#{type},
+			</if>
+		</trim>
+	</insert>
+</mapper>

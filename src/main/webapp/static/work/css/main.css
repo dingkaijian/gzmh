@@ -1,0 +1,110 @@
+/* 主框架 */
+
+/* 顶部 */
+.header {
+    height: 90px;
+    line-height: 90px;
+
+    color: #535d66;
+
+    background: linear-gradient(#8abde1, #f7f9f8);
+}
+
+/* banner文字 */
+.title {
+    padding-left: 110px;
+    font-size: 32px;
+    font-weight: bold;
+
+    background-image: url(../img/icon.png);
+    background-repeat: no-repeat;
+    background-position: 40px;
+}
+
+/* 右上角菜单,搜索 */
+.tool {
+    padding-right: 40px;
+    text-align: right;
+}
+
+.info,
+.search {
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+}
+
+.info a {
+    margin: 0 5px;
+}
+
+.search .layui-input {
+    height: 40px;
+    background: linear-gradient(#feffff, #daebf6);
+}
+
+.search .layui-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+
+    background-color: #fff;
+    color: #436681;
+    font-size: 20px;
+
+    vertical-align: top;
+}
+
+/* 上方主体导航 */
+.nav {
+    padding: 0 40px;
+
+    background: linear-gradient(#f1f5fa, #bfdbeb);
+    border-top: solid 1px #dde1e4;
+    border-bottom: solid 4px #6d9ed4;
+}
+
+.nav .layui-nav-item {
+    height: 40px;
+    line-height: 40px;
+}
+
+.nav .layui-nav .layui-nav-item a {
+    padding: 0 40px;
+    color: #25526f;
+}
+
+.nav .layui-nav .layui-nav-item a i {
+    padding-right: 10px;
+}
+
+.nav .layui-nav .layui-nav-item a:hover,
+.nav .layui-nav .layui-this a {
+    color: #fff;
+    background: linear-gradient(#6ab6ea, #358ad0);
+}
+
+.nav .layui-nav .layui-this:after {
+    content: none;
+}
+
+.nav .layui-nav-bar {
+    display: none;
+}
+
+.body {
+    font-size: 0;
+}
+
+#channelFrame {
+    overflow: hidden;
+}
+
+.footer {
+    height: 88px;
+    line-height: 88px;
+    border-top: solid 2px #6d9ed4;
+    color: #878787;
+    background: linear-gradient(#fefeff, #8abde1);
+    text-align: center;
+}

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ac.ict.modules.pw.dao.PwUpdateRecordDao">
+	<!-- 选择当前用户的记录然后按照修改时间进行倒叙排序，
+	然后取出前最近修改的前5条记录，
+	然后再从这前5条记录里再选择密码为当前输入的密码的 -->
+	<select id="findList" resultType="PwUpdateRecord">
+	  	SELECT *  FROM (
+	  		SELECT *  FROM (
+				SELECT
+				*
+				FROM PW_UPDATE_MESSAGE a
+				WHERE  a.USERID=#{userid}  	 	
+				ORDER BY a.PW_ID DESC
+	 	 	)b limit 0, #{number})c 
+	 	 WHERE c.PW=#{pw} 
+	</select>
+	<insert id="insert">
+		insert into PW_UPDATE_MESSAGE 
+			(PW_ID, USERID, UPDATE_DATE, PW, UPDATE_REASON)
+	    values 
+	    	(#{count}, #{userid,jdbcType=VARCHAR}, NOW(), 
+	      	#{pw,jdbcType=VARCHAR}, #{updateReason,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.ac.ict.modules.pw.entity.PwUpdateRecord">
+    insert into PW_UPDATE_MESSAGE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="pw != null">
+        PW,
+      </if>
+        UPDATE_DATE,
+        PW_ID,
+      <if test="updateReason != null">
+        UPDATE_REASON,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="certificateno != null">
+        CERTIFICATENO,
+      </if>
+      <if test="idcard1 != null">
+        IDCARD1,
+      </if>
+      <if test="idcard2 != null">
+        IDCARD2,
+      </if>
+      <if test="mobile != null">
+        MOBILE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="certificateType != null">
+        CERTIFICATETYPE,
+      </if>
+      <if test="userType != null">
+        USERTYPE,
+      </if>
+      <if test="area != null">
+        AREA,
+      </if>
+      <if test="dz != null">
+        DZ,
+      </if>
+      <if test="country != null">
+        COUNTRY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="pw != null">
+        #{pw,jdbcType=VARCHAR},
+      </if>
+        sysdate,
+       PW_UPDATE_MESSAGE_XLH.nextval,
+      <if test="updateReason != null">
+        #{updateReason,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateno != null">
+        #{certificateno,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard1 != null">
+        #{idcard1,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard2 != null">
+        #{idcard2,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+       <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+       <if test="certificateType != null">
+        #{certificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+         #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+         #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="dz != null">
+         #{dz,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+         #{country,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="getCount" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM PW_UPDATE_MESSAGE
+	</select>
+  
+</mapper>

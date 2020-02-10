@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ac.ict.modules.sys.dao.AppConfigDao">
+
+	<sql id="appConfigColumns">
+		a.id,
+		a.config_name AS "configName",
+		a.config_value AS "configValue",
+		a.config_desc AS "configDesc",
+		a.create_time AS "createTime",
+		a.update_time AS "updateTime",
+		a.del_flag AS "del_flag",
+		a.user_permission AS "userPermission",
+		a.config_state AS "configState"
+	</sql>
+	
+	<!-- 根据ID获取信息 -->
+	<select id="get" resultType="AppConfig">
+		SELECT 
+			<include refid="appConfigColumns"/>
+		FROM sys_app_config a
+		WHERE id=#{id}
+	</select>
+	
+	<!-- 根据配置名查询配置 -->
+	<select id="getByConfigName" resultType="AppConfig">
+		SELECT 
+			<include refid="appConfigColumns"/>
+		FROM sys_app_config a
+		WHERE config_name=#{name}
+	</select>
+	
+	<!-- 分页查询全部配置信息 -->
+	<select id="findList" resultType="AppConfig">
+		SELECT 
+			<include refid="appConfigColumns"/>
+		FROM sys_app_config a
+		<choose>
+			<when test="page!= null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO sys_app_config(
+			id,
+			config_name,
+			config_value,
+			config_desc,
+			create_time,
+			update_time,
+			del_flag,
+			user_permission,
+			config_state
+		)values(
+			#{id},
+			#{configname},
+			#{configvalue},
+			#{configdesc},
+			#{createtime},
+			#{updatetime},
+			1,
+			#{userpermission},
+			0
+		)
+	</insert>
+	
+	<update id="update">
+		update sys_app_config set
+		config_name=#{configname},
+		config_value=#{configvalue},
+		config_desc=#{configdesc},
+		update_time=#{updatetime}
+		where id = #{id}
+	</update>
+	
+	<update id="delete">
+		delete from sys_app_config where id = #{id}
+	</update>
+	
+	<update id="pushAndClose">
+		update sys_app_config set config_state = #{configstate} where id = #{id}
+	</update>
+</mapper>

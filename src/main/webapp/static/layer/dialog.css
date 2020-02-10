@@ -1,0 +1,30 @@
+.layui-layer-lan-ict[type=dialog] {
+	min-width: 280px
+}
+
+.layui-layer-lan-ict .layui-layer-title {
+	background: #3980cf;
+	color: #fff;
+	border: none
+}
+
+.layui-layer-lan-ict .layui-layer-btn {
+	padding: 5px 10px 10px;
+	text-align: right;
+	border-top: 1px solid #E9E7E7
+}
+
+.layui-layer-lan-ict .layui-layer-btn a {
+	background: #fff;
+	border-color: #E9E7E7;
+	color: #333
+}
+
+.layui-layer-lan-ict .layui-layer-btn .layui-layer-btn0 {
+	background: #3980cf;
+	color: #fff;
+}
+
+.layui-layer-lan-ict .layui-layer-btn .layui-layer-btn1 {
+	background: #C9C5C5
+}

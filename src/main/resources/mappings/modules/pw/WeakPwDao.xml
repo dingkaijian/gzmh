@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ac.ict.modules.pw.dao.WeakPwDao">
+
+  <!-- 获取所有的弱密码 -->
+  <select id="getAll" resultType="cn.ac.ict.modules.pw.entity.WeakPw">
+  	SELECT  password  FROM weak_pw  		 
+  </select>
+  <insert id="insertpw">
+   insert into weak_pw (password) values(#{password}) 
+  </insert>
+</mapper>

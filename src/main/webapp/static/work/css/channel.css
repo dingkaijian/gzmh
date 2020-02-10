@@ -1,0 +1,79 @@
+/* 左侧导航 */
+.side {
+    width: 210px;
+    border-right: solid 1px #7abbd8;
+}
+.channel {
+    height: 34px;
+    line-height: 34px;
+    background: linear-gradient(#dbf1f9, #83c9e8);
+
+    color: #25526f;
+    text-align: center;
+    font-weight: bold;
+}
+
+.side,
+.content {
+    float: left;
+}
+
+.side {
+    margin-left: -100%;
+    width: 210px;
+    box-sizing: border-box;
+}
+
+.side .layui-nav {
+    background: linear-gradient(#4fa5df, #4ea3dd);
+}
+
+.side .layui-nav-tree {
+    width: 210px;
+    overflow-y: auto;
+}
+
+.side .layui-nav .layui-this:after {
+    content: none;
+}
+
+/* 隐藏layui菜单默认滑动块 */
+.side .layui-nav-bar {
+    display: none;
+}
+
+/* 重置layui子菜单默认背景 */
+.side .layui-nav .layui-nav-item a:hover,
+.side .layui-nav .layui-this a {
+    background-color: #3c91d4;
+}
+
+.side .layui-nav-itemed > .layui-nav-child {
+    background-color: transparent !important;
+}
+
+/* 子菜单偏移 */
+.side .layui-nav-itemed > .layui-nav-child a {
+    padding-left: 40px;
+}
+
+/* 重置layui高亮子菜单背景 */
+.side .layui-nav-tree .layui-nav-child dd.layui-this,
+.side .layui-nav-tree .layui-nav-child dd.layui-this a,
+.side .layui-nav-tree .layui-this,
+.side .layui-nav-tree .layui-this > a,
+.side .layui-nav-tree .layui-this > a:hover {
+    background-color: #3c91d4;
+}
+
+.side .layui-nav .layui-nav-item i {
+    padding-right: 10px;
+}
+
+.content {
+    width: 100%;
+}
+
+.frame {
+    margin-left: 210px;
+}

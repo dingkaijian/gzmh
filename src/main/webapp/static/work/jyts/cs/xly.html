@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+        <link rel="stylesheet" href="../../lib/fontawesome/css/all.css" />
+        <link rel="stylesheet" href="../../css/common.css" />
+        <link rel="stylesheet" href="../../css/page.css" />
+    </head>
+    <body>
+        <!-- bread 路径栏 -->
+        <div class="bread layui-breadcrumb" lay-separator=">">
+            <a><cite>科技政务服务平台工作门户</cite></a>
+            <a><cite>综合业务管理</cite></a>
+            <a><cite>创新人才与科技计划综合业务</cite></a>
+        </div>
+
+        <!-- bread 路径栏下面的内容，必须指定id为‘main-content’，并引用page.js。会自动调整高度。 -->
+        <div id="main-content">
+            <div class="layui-tab layui-tab-card">
+                <!-- 如果使用tab，则内容区域必须指定id为‘tab-content’，并引用page.js。会自动调整高度 -->
+                <div id="tab-content" class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <form action="" class="layui-form">
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label"
+                                        >按提问时间统计：</label
+                                    >
+                                    <div class="layui-input-inline">
+                                        <input
+                                            type="text"
+                                            class="layui-input"
+                                        />
+                                    </div>
+                                    <div class="layui-form-mid">-</div>
+                                    <div class="layui-input-inline">
+                                        <input
+                                            type="text"
+                                            class="layui-input"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label"
+                                        >负责人：</label
+                                    >
+                                    <div class="layui-input-inline">
+                                        <input
+                                            type="text"
+                                            class="layui-input"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label"
+                                        >状态：</label
+                                    >
+                                    <div class="layui-input-inline">
+                                        <input
+                                            type="text"
+                                            class="layui-input"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label"
+                                        >业务部门：</label
+                                    >
+                                    <div class="layui-input-inline">
+                                        <input
+                                            type="text"
+                                            class="layui-input"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <button class="layui-btn">搜索</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="layui-row tools">
+                            <!-- 操作按钮 -->
+                            <button class="layui-btn">新建</button>
+                            <button class="layui-btn">删除</button>
+                            <button class="layui-btn">提交</button>
+                            <button class="layui-btn">审核</button>
+                        </div>
+
+                        <table class="layui-table">
+                            <colgroup>
+                                <col />
+                                <col />
+                                <col />
+                                <col />
+                                <col />
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th style="width: 20px;">
+                                        <input type="checkbox" />
+                                    </th>
+                                    <th>任务名称</th>
+                                    <th>负责人</th>
+                                    <th>所在地区</th>
+                                    <th>业务部门</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../../js/page.js"></script>
+        <script src="../../lib/layui/layui.all.js"></script>
+    </body>
+</html>

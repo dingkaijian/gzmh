@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.xtjh.dao.XtjhInfoRecordDao">
+
+	<sql id="xtjhInfoRecordColumns">
+		a.id AS "id",
+		a.xtjh_info_id AS "xtjhInfo.id",
+		a.user_id AS
+		"user.id",
+		a.read_flag AS "readFlag",
+		a.read_date AS "readDate",
+		u.name AS "user.name"
+	</sql>
+
+	<sql id="xtjhInfoRecordJoins">
+	LEFT JOIN sys_user u on a.user_id = u.id
+	</sql>
+
+	<select id="get" resultType="XtjhInfoRecord">
+		SELECT
+		<include refid="xtjhInfoRecordColumns" />
+		FROM xtjh_info_record a
+		<include refid="xtjhInfoRecordJoins" />
+		WHERE a.id = #{id}
+	</select>
+
+	<select id="findList" resultType="XtjhInfoRecord">
+		SELECT
+		<include refid="xtjhInfoRecordColumns" />
+		FROM xtjh_info_record a
+		<include refid="xtjhInfoRecordJoins" />
+		<where>
+			<if test="xtjhInfo !=null and xtjhInfo.id != null and xtjhInfo.id !='' ">
+				AND a.xtjh_info_id = #{xtjhInfo.id}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="findAllList" resultType="XtjhInfoRecord">
+		SELECT
+		<include refid="xtjhInfoRecordColumns" />
+		FROM xtjh_info_record a
+		<include refid="xtjhInfoRecordJoins" />
+		<where>
+
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<insert id="insert">
+		INSERT INTO xtjh_info_record(
+		ID,
+		xtjh_info_ID,
+		USER_ID,
+		READ_FLAG,
+		READ_DATE
+		) VALUES (
+		#{id},
+		#{xtjhInfo.id},
+		#{user.id},
+		#{readFlag},
+		#{readDate}
+		)
+	</insert>
+
+	<insert id="insertAll" parameterType="List">
+		INSERT INTO xtjh_info_record(
+		ID,
+		xtjh_info_ID,
+		USER_ID,
+		READ_FLAG,
+		READ_DATE
+		)
+		VALUES
+		<foreach collection="list" item="e" open="" separator=","
+			close="">
+			(#{e.id},
+			#{e.xtjhInfo.id},
+			#{e.user.id},
+			#{e.readFlag},
+			#{e.readDate})
+		</foreach>
+	</insert>
+
+	<update id="update">
+		UPDATE xtjh_info_record SET
+		READ_FLAG = #{readFlag},
+		READ_DATE = SYSDATE(),
+		WHERE xtjh_info_id = #{xtjhInfo.id}
+		AND user_id =
+		#{user.id}
+		AND read_flag != '1'
+	</update>
+
+	<update id="delete">
+		UPDATE FROM xtjh_info_record
+		WHERE id = #{id}
+	</update>
+
+	<delete id="deleteByXtjhInfoId">
+		DELETE FROM xtjh_info_record
+		WHERE xtjh_info_id =
+		#{xtjhInfoId}
+	</delete>
+
+</mapper>
