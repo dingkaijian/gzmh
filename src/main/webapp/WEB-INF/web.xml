@@ -17,6 +17,10 @@
 	<listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>  
 	</listener>
+	<!-- 定时监听器配置 -->
+	<listener>
+		<listener-class>cn.ac.ict.modules.ws.listener.DuetimeListener</listener-class>
+	</listener>
 	<!-- 弱密码初始化 -->
 	<listener>
 		<listener-class>cn.ac.ict.common.listener.WeakPwInitialized</listener-class>

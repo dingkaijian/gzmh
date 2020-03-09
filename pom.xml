@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>com.thinkgem.jeesite</groupId>
-	<artifactId>jeesite</artifactId>
+	<artifactId>AC_MAN_PORTAL</artifactId>
 	<version>1.2.7</version>
 	<packaging>war</packaging>
 	
@@ -616,7 +616,26 @@
 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ckfinderplugin-imageresize-2.3.jar</systemPath>
 		</dependency>
 		<!-- CKFinder end -->
-		
+		 <dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.8</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.alibaba</groupId>
+					<artifactId>jconsole</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.alibaba</groupId>
+					<artifactId>tools</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+		    <groupId>com.sun.xml.bind</groupId>
+		    <artifactId>jaxb-impl</artifactId>
+		    <version>2.2.6</version>
+		</dependency>
 		<!-- TEST begin -->
 		<dependency>
 			<groupId>junit</groupId>
